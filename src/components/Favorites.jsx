@@ -73,6 +73,13 @@ function Favorites() {
             topic: "Travel Destination",
             customName: "Lake Como, Italy",
             desc: "Boat rides, gelato, cobble stones and pretending I live there!"
+        },
+        {
+            image: CROPP,
+            alternate: "CROPP",
+            topic: "Clothing Store",
+            customName: "CROPP TOWN",
+            desc: "A window shopping trip that always somehow turns into a shopping spree"
         }
     ];
 
@@ -172,9 +179,7 @@ function Favorites() {
                 ))}
             </div>
 
-            <p className={styles.counter}>
-                {currentIndex + 1} / {favorites.length}
-            </p>
+           
         </section>
     );
 }
