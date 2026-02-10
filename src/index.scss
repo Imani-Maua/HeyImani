@@ -1,3 +1,5 @@
+@import './styles/variables.scss';
+
 :root {
   --font-logo: "Oi", "Shrikhand", cursive;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,8 +15,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: $bg-offwhite;
+  color: $text-primary;
+  font-family: $font-base;
 }
 
 * {

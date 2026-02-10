@@ -1,73 +1,87 @@
 @import '../styles/variables.scss';
 
 .favoritesSection {
-    max-width: 1000px;
-    padding: 1rem;   
+    width: 100%;
+    padding: 2rem;
 }
 
 .carouselContainer {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
+    cursor: grab;
+    overflow: hidden;
+    position: relative;
+
+    &:active {
+        cursor: grabbing;
+    }
 }
 
 .navButton {
-    background-color: $brand-pink;
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid $border-gray;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
+    font-size: 1.5rem;
+    color: $text-primary;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
 
     &:hover {
-        background-color: darken($brand-pink, 10%);
-        transform: scale(1.1);
-    }
-
-    &:active {
-        transform: scale(0.95);
+        background: $brand-pink;
+        color: white;
+        border-color: $brand-pink;
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
     }
 }
 
-
-
-.category {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: $brand-pink;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0 0 0.75rem 0;
+.prevButton {
+    left: 1rem;
 }
 
-.title {
-    font-size: 1.75rem;
+.nextButton {
+    right: 1rem;
+}
+
+.carouselTrack {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carouselSlide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem; // Small padding to let shadows show
+}
+
+.favoritesTitle {
+    font-size: 1.15rem; // Scaled down
     font-weight: 700;
     color: $text-primary;
-    margin: 0 0 1rem 0;
-    line-height: 1.3;
-}
-
-.description {
-    font-size: 1rem;
-    color: #4b5563;
-    line-height: 1.6;
-    margin: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid $brand-pink;
 }
 
 .dots {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem; // Scaled down
 }
 
 .dot {
@@ -101,14 +115,8 @@
 
 
 @media (max-width: 768px) {
-    .carouselContainer {
-        gap: 1rem;
-    }
-
-    .navButton {
-        width: 40px;
-        height: 40px;
-        font-size: 1.25rem;
+    .favoritesSection {
+        padding: 1.5rem 1rem;
     }
 
     .card {
@@ -116,7 +124,7 @@
         min-height: 200px;
     }
 
-    .title {
-        font-size: 1.5rem;
+    .favoritesTitle {
+        font-size: 1.15rem;
     }
 }

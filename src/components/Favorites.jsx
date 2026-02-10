@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Favorites.module.scss';
 import CarouselCard from './CarouselCard';
 import CROPP from '../assets/CROPP.png';
@@ -14,13 +14,15 @@ import Como from '../assets/Como.png';
 
 function Favorites() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [touchStart, setTouchStart] = useState(null);
 
     const favorites = [
         {
             image: Capuccino,
-            alternate: "Double shot cappuccino",
+            alternate: "Double cappuccino",
             topic: "Coffee Order",
-            customName: "Double Shot Cappuccino",
+            customName: "2x Cappuccino",
             desc: "2 brown sugars. Non-negotiable. ☕"
         },
         {
@@ -71,6 +73,13 @@ function Favorites() {
             topic: "Travel Destination",
             customName: "Lake Como, Italy",
             desc: "Boat rides, gelato, cobble stones and pretending I live there!"
+        },
+        {
+            image: CROPP,
+            alternate: "CROPP",
+            topic: "Clothing Store",
+            customName: "CROPP TOWN",
+            desc: "A window shopping trip that always somehow turns into a shopping spree"
         }
     ];
 
@@ -82,33 +91,80 @@ function Favorites() {
         setCurrentIndex((prev) => (prev - 1 + favorites.length) % favorites.length);
     };
 
+    useEffect(() => {
+        if (isPaused) return;
+        const timer = setInterval(() => {
+            nextSlide();
+        }, 4000);
+        return () => clearInterval(timer);
+    }, [currentIndex, isPaused]);
+
+    const handleTouchStart = (e) => {
+        setTouchStart(e.targetTouches[0].clientX);
+        setIsPaused(true);
+    };
+
+    const handleTouchMove = (e) => {
+        if (!touchStart) return;
+        const currentTouch = e.targetTouches[0].clientX;
+        const diff = touchStart - currentTouch;
+
+        if (diff > 50) {
+            nextSlide();
+            setTouchStart(null);
+        } else if (diff < -50) {
+            prevSlide();
+            setTouchStart(null);
+        }
+    };
+
+    const handleTouchEnd = () => {
+        setTouchStart(null);
+        setIsPaused(false);
+    };
+
     return (
         <section className={styles.favoritesSection}>
-
-
-            <div className={styles.carouselContainer}>
+            <h2 className={styles.favoritesTitle}>Things I like:</h2>
+            <div
+                className={styles.carouselContainer}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 <button
+                    className={`${styles.navButton} ${styles.prevButton}`}
                     onClick={prevSlide}
-                    className={styles.navButton}
-                    aria-label="Previous favorite"
+                    aria-label="Previous slide"
                 >
-                    ←
+                    ‹
                 </button>
 
-                <CarouselCard
-                    image={favorites[currentIndex].image}
-                    alternate={favorites[currentIndex].alternate}
-                    topic={favorites[currentIndex].topic}
-                    customName={favorites[currentIndex].customName}
-                    desc={favorites[currentIndex].desc}
-                />
+                <div
+                    className={styles.carouselTrack}
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                >
+                    {favorites.map((item, index) => (
+                        <div key={index} className={styles.carouselSlide}>
+                            <CarouselCard
+                                image={item.image}
+                                alternate={item.alternate}
+                                topic={item.topic}
+                                customName={item.customName}
+                                desc={item.desc}
+                            />
+                        </div>
+                    ))}
+                </div>
 
                 <button
+                    className={`${styles.navButton} ${styles.nextButton}`}
                     onClick={nextSlide}
-                    className={styles.navButton}
-                    aria-label="Next favorite"
+                    aria-label="Next slide"
                 >
-                    →
+                    ›
                 </button>
             </div>
 
@@ -123,9 +179,7 @@ function Favorites() {
                 ))}
             </div>
 
-            <p className={styles.counter}>
-                {currentIndex + 1} / {favorites.length}
-            </p>
+           
         </section>
     );
 }
