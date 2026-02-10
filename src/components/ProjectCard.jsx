@@ -1,13 +1,13 @@
 import styles from './ProjectCard.module.scss';
 
 
-function ProjectCard(title, stack, start, end, desc, link) {
+function ProjectCard({ title, stack, start, end, desc, github, live }) {
     return (
         <div className={styles.projectCard}>
             <div className={styles.projectTitle}>
                 <h2>{title}</h2>
                 <div>
-                    <span><strong>Technologies:</strong></span>
+                    <span><strong>Stack:</strong></span>
                     <p>{stack}</p>
                 </div>
             </div>
@@ -19,9 +19,9 @@ function ProjectCard(title, stack, start, end, desc, link) {
             <div className={styles.projectDesc}>
                 <p>{desc}</p>
             </div>
-            <div className={projectButtons}>
+            <div className={styles.projectButtons}>
                 <a
-                    href={link}
+                    href={github}
                     target='_blank'
                     rel='noopener noreferrer'
                     className={styles.socialButton}
@@ -29,7 +29,7 @@ function ProjectCard(title, stack, start, end, desc, link) {
                 >Github
                 </a>
                 <a
-                    href={link}
+                    href={live}
                     target='_blank'
                     rel='noopener noreferrer'
                     className={styles.socialButton}
