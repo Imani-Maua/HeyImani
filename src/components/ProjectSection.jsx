@@ -2,7 +2,7 @@ import ProjectCard from './ProjectCard';
 import styles from './ProjectSection.module.scss';
 
 
-function ProjectSection() {
+function ProjectSection({ layout = 'grid', hideTitle = false }) {
     const projects = [
         {
             title: 'HeyImani Portfolio',
@@ -51,10 +51,12 @@ function ProjectSection() {
         }
     ];
 
+    const containerClass = layout === 'list' ? styles.projectsList : styles.projectsGrid;
+
     return (
         <section className={styles.projectSection}>
-            <h2 className={styles.sectionTitle}>Things I've built:</h2>
-            <div className={styles.projectsGrid}>
+            {!hideTitle && <h2 className={styles.sectionTitle}>Things I've built:</h2>}
+            <div className={containerClass}>
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={index}
