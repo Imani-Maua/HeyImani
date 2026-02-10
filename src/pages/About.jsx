@@ -9,9 +9,12 @@ function About() {
             <SidePanel />
             <div style={{ flex: 1 }}>
                 <Hero />
+                
+            </div>
+            <div style={{ flex: 1 }}>
+                <ExperienceSection />
                 <Favorites />
             </div>
-            <ExperienceSection />
         </div>
     );
 }
