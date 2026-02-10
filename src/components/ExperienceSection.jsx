@@ -11,18 +11,14 @@ function ExperienceSection({
         <section className={styles.experienceSection}>
             {!hideTitle && <h2 className={styles.sectionTitle}>{title}</h2>}
             <div className={styles.cardsContainer}>
-                {experiences.map((exp, index) => (
+                {experiences.map((experience, index) => (
                     <ExperienceCard
                         key={index}
-                        title={exp.title}
-                        company={exp.company}
-                        type={exp.type}
-                        location={exp.location}
-                        startDate={exp.startDate}
-                        endDate={exp.endDate}
-                        duration={exp.duration}
-                        description={exp.description}
-                        skills={exp.skills}
+                        title={experience.title}
+                        company={experience.company}
+                        startDate={experience.startDate}
+                        endDate={experience.endDate}
+                        description={experience.description}
                     />
                 ))}
             </div>
