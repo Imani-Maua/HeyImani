@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './Hero.module.scss';
-import profile3 from '../assets/profile3.png';
+import profile3 from '../assets/Profile3.png';
 import ResumeModal from './ResumeModal';
 
 function Hero() {
