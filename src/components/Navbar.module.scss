@@ -5,8 +5,13 @@
     justify-content: space-between;
     align-items: center;
     padding: $spacing-md $spacing-lg;
-    background-color: $bg-white;
-    border-bottom: 1px solid $border-gray;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba($border-gray, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .brandName {
