@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../styles/variables.scss' as *;
 
 .pageContainer {
@@ -83,6 +84,6 @@
     &:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
-        background-color: darken($brand-pink, 5%);
+        background-color: color.adjust($brand-pink, $lightness: -5%);
     }
 }
