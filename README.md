@@ -81,3 +81,14 @@ The site will be available at `http://localhost:5173`
 
 ---
 
+## 🚀 Deployment
+
+This portfolio is hosted on Netlify using Netlify's subdomain. Check it out here: [Maua Imani](https://mauaimani.netlify.app)
+
+## 🛠️ Future Enhancements
+
+- Live Demos for all my projects.
+
+## License
+
+MIT License
