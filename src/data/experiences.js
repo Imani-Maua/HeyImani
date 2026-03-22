@@ -47,13 +47,6 @@ export const extracurriculars = [
         description: "Served as a mentor to high school graduates interested in pursuing careers in technology, providing guidance on computer science fundamentals, academic pathways, and career development through online workshops and bootcamps focused on building confidence, problem-solving skills, and readiness for university-level computer science."
     },
     {
-        title: "Club Coordinator",
-        company: "Google Developer Student Clubs - UniDeb",
-        startDate: "Sep 2023",
-        endDate: "Present",
-        description: "Led and coordinated technical workshops, hackathons, and community events for students interested in Google technologies and software development. Fostered a collaborative learning environment and connected students with industry professionals and resources."
-    },
-    {
         title: "Club Member",
         company: "Green Tech",
         startDate: "Jan 2026",
